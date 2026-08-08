@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hazy Summerz — British Rock artist from Portsmouth, England. Written, performed and produced independently. Stream and download on Bandcamp.">
+  <title>Hazy Summerz — British Rock | Portsmouth, England</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0a0806;
+      color: #e8dcc8;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    .hs-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid #2a2018;
+      background: #0a0806;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* 3D cast-metal amp badge logo */
+    .hs-logo-badge {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f0d898;
+      text-shadow:
+        0 1px 0 #8a6a20,
+        0 2px 0 #7a5a18,
+        0 3px 0 #6a4a10,
+        0 4px 0 #3a2808,
+        0 5px 8px rgba(0, 0, 0, 0.7),
+        0 0 18px rgba(200, 169, 110, 0.18);
+      padding: 6px 14px;
+      background: linear-gradient(180deg, #2a2010 0%, #1a1408 40%, #0e0c06 100%);
+      border: 1px solid #4a3a1a;
+      border-bottom: 2px solid #2a1e08;
+      position: relative;
+    }
+
+    .hs-logo-badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(200, 169, 110, 0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hs-nav ul {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .hs-nav a {
+      color: #a89880;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .hs-nav a:hover {
+      color: #c8a96e;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO — AMP CABINET
+    ───────────────────────────────────────────── */
+    .hs-hero {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .hs-cabinet {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Text panel — left side, narrow, fades into amp */
+    .hs-text-panel {
+      position: relative;
+      z-index: 5;
+      width: 300px;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(to right, rgba(8, 6, 4, 0.97) 72%, rgba(8, 6, 4, 0.0));
+    }
+
+    .hs-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .hs-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1.0;
+      color: #f0e6cc;
+      margin-bottom: 1.1rem;
+    }
+
+    .hs-headline em {
+      font-style: italic;
+      color: #c8a96e;
+    }
+
+    .hs-rule {
+      width: 40px;
+      height: 2px;
+      background: #c8a96e;
+      margin-bottom: 1.1rem;
+    }
+
+    .hs-bio {
+      font-size: 12.5px;
+      line-height: 1.85;
+      color: #a89880;
+      font-weight: 300;
+    }
+
+    /* Photo frame — floats over amp, right edge aligns with grille */
+    .hs-photo-float {
+      position: absolute;
+      z-index: 5;
+      right: 22%;
+      bottom: 2rem;
+      width: 180px;
+      height: 235px;
+      border: 2px solid #c8a96e;
+      background: rgba(10, 8, 6, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    /* When you add your photo, it fills the frame */
+    .hs-photo-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hs-photo-label {
+      font-size: 9px;
+      color: #5a4a38;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────────────────────
+       MUSIC SECTION
+    ───────────────────────────────────────────── */
+    .hs-music {
+      padding: 2.5rem 2rem;
+      border-bottom: 1px solid #2a2018;
+      background: #0a0806;
+    }
+
+    .hs-section-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 0.3rem;
+      font-weight: 400;
+    }
+
+    .hs-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #f0e6cc;
+      margin-bottom: 1.8rem;
+    }
+
+    .hs-player-shell {
+      background: #0f0c08;
+      border: 1px solid #2a2018;
+      max-width: 660px;
+      overflow: hidden;
+    }
+
+    .hs-player-top {
+      background: #100e0a;
+      border-bottom: 1px solid #1e1810;
+      padding: 0.7rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hs-player-top-label {
+      font-size: 10px;
+      color: #6a5a48;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hs-rec {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: #6a5a48;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hs-rec-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8b3333;
+    }
+
+    .hs-bandcamp-wrap {
+      padding: 1.1rem 1.1rem 0;
+    }
+
+    /* The Bandcamp iframe sits here */
+    .hs-bandcamp-wrap iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+
+    .hs-player-footer {
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px solid #1e1810;
+    }
+
+    .hs-btn {
+      padding: 0.5rem 1.1rem;
+      border: 1px solid #c8a96e;
+      color: #c8a96e;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hs-btn:hover {
+      background: #c8a96e;
+      color: #0a0806;
+    }
+
+    .hs-support-note {
+      font-size: 11px;
+      color: #4a3e2e;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .hs-footer {
+      padding: 1.6rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a1208;
+      background: #0a0806;
+    }
+
+    .hs-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .hs-footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .hs-footer-rule {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #c8a96e, transparent);
+      margin-bottom: 5px;
+    }
+
+    .hs-footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c8a96e;
+      text-shadow: 0 1px 0 #6a4a10, 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .hs-footer-location {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6a5a3a;
+      font-weight: 400;
+    }
+
+    .hs-footer-copy {
+      font-size: 11px;
+      color: #2a2018;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — MOBILE
+    ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hs-hero {
+        flex-direction: column;
+        min-height: auto;
+      }
+      .hs-text-panel {
+        width: 100%;
+        min-width: unset;
+        background: rgba(8, 6, 4, 0.96);
+        padding: 2rem 1.5rem;
+      }
+      .hs-photo-float {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 260px;
+        border-left: none;
+        border-right: none;
+      }
+      .hs-cabinet {
+        display: none;
+      }
+      .hs-headline {
+        font-size: 36px;
+      }
+      .hs-footer {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+      }
+      .hs-footer-left {
+        flex-direction: column;
+      }
+      .hs-nav ul {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <nav class="hs-nav">
+    <div class="hs-logo-badge">Hazy Summerz</div>
+    <ul>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO — AMP CABINET BACKGROUND
+  ═══════════════════════════════════════ -->
+  <section class="hs-hero">
+
+    <!--
+      AMP CABINET — drawn entirely in SVG.
+      Two 12" speaker cones, woven gold grille cloth,
+      full control panel. No photographs, no copyright issues.
+    -->
+    <svg class="hs-cabinet" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- background -->
+      <rect width="1200" height="520" fill="#12100a"/>
+
+      <!-- cabinet body -->
+      <rect x="60" y="30" width="1080" height="460" rx="6" fill="#1c1610" stroke="#2e2418" stroke-width="1.5"/>
+      <rect x="60" y="30" width="1080" height="8" rx="3" fill="#2e2418"/>
+      <rect x="60" y="30" width="8"    height="460" fill="#2a2018"/>
+
+      <!-- corner bolts -->
+      <circle cx="80"   cy="50"  r="8" fill="#3a2e1e" stroke="#4a3e2e" stroke-width="1"/>
+      <circle cx="1120" cy="50"  r="8" fill="#3a2e1e" stroke="#4a3e2e" stroke-width="1"/>
+      <circle cx="80"   cy="470" r="8" fill="#3a2e1e" stroke="#4a3e2e" stroke-width="1"/>
+      <circle cx="1120" cy="470" r="8" fill="#3a2e1e" stroke="#4a3e2e" stroke-width="1"/>
+
+      <!-- grille frame -->
+      <rect x="90" y="55" width="780" height="415" rx="3" fill="#1a1408" stroke="#2a2018" stroke-width="1"/>
+
+      <defs>
+        <!-- warm gold woven grille cloth -->
+        <pattern id="weave" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+          <rect width="16" height="16" fill="#7a6630"/>
+          <rect x="0"  y="6"  width="16" height="3" fill="#9a8440" opacity="0.9"/>
+          <rect x="0"  y="13" width="16" height="3" fill="#9a8440" opacity="0.9"/>
+          <rect x="6"  y="0"  width="3"  height="16" fill="#9a8440" opacity="0.9"/>
+          <rect x="13" y="0"  width="3"  height="16" fill="#9a8440" opacity="0.9"/>
+          <rect x="5"  y="5"  width="5"  height="5"  fill="#e0c070" opacity="0.45"/>
+          <rect x="12" y="5"  width="5"  height="5"  fill="#e0c070" opacity="0.45"/>
+          <rect x="5"  y="12" width="5"  height="5"  fill="#e0c070" opacity="0.45"/>
+          <rect x="12" y="12" width="5"  height="5"  fill="#e0c070" opacity="0.45"/>
+        </pattern>
+
+        <!-- grille vignette — darker at edges -->
+        <radialGradient id="grille-vig" cx="50%" cy="50%" r="60%">
+          <stop offset="0%"   stop-color="#c8a040" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#0a0806" stop-opacity="0.55"/>
+        </radialGradient>
+
+        <!-- speaker cone mesh -->
+        <pattern id="spk-mesh" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+          <rect width="8" height="8" fill="#0e0c08"/>
+          <circle cx="4" cy="4" r="1.5" fill="#181410" opacity="0.8"/>
+        </pattern>
+
+        <!-- speaker cone radial gradient -->
+        <radialGradient id="cone" cx="45%" cy="40%" r="55%">
+          <stop offset="0%"   stop-color="#2a2218"/>
+          <stop offset="70%"  stop-color="#1a1410"/>
+          <stop offset="100%" stop-color="#0f0c08"/>
+        </radialGradient>
+      </defs>
+
+      <!-- grille cloth -->
+      <rect x="92" y="57" width="776" height="411" fill="url(#weave)"/>
+      <rect x="92" y="57" width="776" height="411" fill="url(#grille-vig)"/>
+
+      <!-- ── LEFT SPEAKER ── -->
+      <circle cx="310" cy="262" r="165" fill="#0a0806" stroke="#2a2018" stroke-width="2"/>
+      <circle cx="310" cy="262" r="162" fill="none"   stroke="#4a4030" stroke-width="3"/>
+      <circle cx="310" cy="262" r="150" fill="url(#spk-mesh)" stroke="#1e1c14" stroke-width="1"/>
+      <circle cx="310" cy="262" r="150" fill="url(#cone)" opacity="0.85"/>
+      <circle cx="310" cy="262" r="148" fill="none" stroke="#3a3828" stroke-width="2.5"/>
+      <circle cx="310" cy="262" r="128" fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="310" cy="262" r="105" fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="310" cy="262" r="80"  fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="310" cy="262" r="32"  fill="#1a1810" stroke="#2a2818" stroke-width="1.5"/>
+      <circle cx="310" cy="262" r="20"  fill="#141210" stroke="#1e1c14" stroke-width="1"/>
+      <circle cx="310" cy="262" r="5"   fill="#3a3020"/>
+      <!-- mounting bolts -->
+      <circle cx="167" cy="262" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="453" cy="262" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="310" cy="119" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="310" cy="405" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+
+      <!-- ── RIGHT SPEAKER ── -->
+      <circle cx="690" cy="262" r="165" fill="#0a0806" stroke="#2a2018" stroke-width="2"/>
+      <circle cx="690" cy="262" r="162" fill="none"   stroke="#4a4030" stroke-width="3"/>
+      <circle cx="690" cy="262" r="150" fill="url(#spk-mesh)" stroke="#1e1c14" stroke-width="1"/>
+      <circle cx="690" cy="262" r="150" fill="url(#cone)" opacity="0.85"/>
+      <circle cx="690" cy="262" r="148" fill="none" stroke="#3a3828" stroke-width="2.5"/>
+      <circle cx="690" cy="262" r="128" fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="690" cy="262" r="105" fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="690" cy="262" r="80"  fill="none" stroke="#3a3828" stroke-width="1.5"/>
+      <circle cx="690" cy="262" r="32"  fill="#1a1810" stroke="#2a2818" stroke-width="1.5"/>
+      <circle cx="690" cy="262" r="20"  fill="#141210" stroke="#1e1c14" stroke-width="1"/>
+      <circle cx="690" cy="262" r="5"   fill="#3a3020"/>
+      <circle cx="547" cy="262" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="833" cy="262" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="690" cy="119" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+      <circle cx="690" cy="405" r="8" fill="#1e1c14" stroke="#2a2818" stroke-width="1"/>
+
+      <!-- ── CONTROL PANEL ── -->
+      <rect x="890" y="55" width="250" height="415" rx="2" fill="#181410" stroke="#2a2018" stroke-width="1"/>
+
+      <!-- brand label -->
+      <rect x="900" y="68" width="230" height="28" fill="#0e0c08" stroke="#2a2018" stroke-width="0.5"/>
+      <text x="1015" y="87" text-anchor="middle" font-family="serif" font-size="11" fill="#c8a96e" letter-spacing="3" font-style="italic">British Valve</text>
+
+      <!-- input jacks -->
+      <rect x="910" y="110" width="210" height="50" rx="2" fill="#0e0c08" stroke="#1e1c14" stroke-width="0.5"/>
+      <text x="920" y="125" font-family="sans-serif" font-size="7" fill="#4a3e2e" letter-spacing="1.5">INPUTS</text>
+      <circle cx="940" cy="143" r="9" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+      <circle cx="940" cy="143" r="4" fill="#0a0806"/>
+      <circle cx="970" cy="143" r="9" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+      <circle cx="970" cy="143" r="4" fill="#0a0806"/>
+      <text x="1000" y="130" font-family="sans-serif" font-size="7" fill="#3a3020" letter-spacing="1">CH.1</text>
+      <text x="1000" y="148" font-family="sans-serif" font-size="7" fill="#3a3020" letter-spacing="1">CH.2</text>
+
+      <!-- tone knobs -->
+      <text x="920" y="185" font-family="sans-serif" font-size="7" fill="#4a3e2e" letter-spacing="1.5">TONE</text>
+      <g transform="translate(915,200)">
+        <circle cx="0" cy="0" r="14" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="8"  fill="#252015"/>
+        <line x1="0" y1="-5" x2="0" y2="-11" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="0" y="26" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#3a3020">BASS</text>
+      </g>
+      <g transform="translate(960,200)">
+        <circle cx="0" cy="0" r="14" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="8"  fill="#252015"/>
+        <line x1="4" y1="-4" x2="9" y2="-9" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="0" y="26" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#3a3020">MID</text>
+      </g>
+      <g transform="translate(1005,200)">
+        <circle cx="0" cy="0" r="14" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="8"  fill="#252015"/>
+        <line x1="5" y1="-3" x2="11" y2="-7" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="0" y="26" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#3a3020">TREB</text>
+      </g>
+      <g transform="translate(1050,200)">
+        <circle cx="0" cy="0" r="14" fill="#1a1810" stroke="#3a3020" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="8"  fill="#252015"/>
+        <line x1="0" y1="-5" x2="0" y2="-11" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="0" y="26" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#3a3020">PRES</text>
+      </g>
+
+      <!-- volume / reverb knobs -->
+      <text x="920" y="260" font-family="sans-serif" font-size="7" fill="#4a3e2e" letter-spacing="1.5">VOLUME</text>
+      <g transform="translate(960,278)">
+        <circle cx="0" cy="0" r="20" fill="#1a1810" stroke="#3a3020" stroke-width="2"/>
+        <circle cx="0" cy="0" r="13" fill="#252015"/>
+        <circle cx="0" cy="0" r="4"  fill="#1a1810"/>
+        <line x1="6" y1="-11" x2="12" y2="-16" stroke="#c8a96e" stroke-width="2" stroke-linecap="round"/>
+        <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#4a3e2e">MASTER</text>
+      </g>
+      <g transform="translate(1045,278)">
+        <circle cx="0" cy="0" r="20" fill="#1a1810" stroke="#3a3020" stroke-width="2"/>
+        <circle cx="0" cy="0" r="13" fill="#252015"/>
+        <circle cx="0" cy="0" r="4"  fill="#1a1810"/>
+        <line x1="-8" y1="-10" x2="-14" y2="-17" stroke="#c8a96e" stroke-width="2" stroke-linecap="round"/>
+        <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#4a3e2e">REVERB</text>
+      </g>
+
+      <!-- power switches -->
+      <text x="920" y="345" font-family="sans-serif" font-size="7" fill="#4a3e2e" letter-spacing="1.5">POWER</text>
+      <rect x="918" y="352" width="28" height="14" rx="7" fill="#1a1810" stroke="#3a3020" stroke-width="1"/>
+      <circle cx="928" cy="359" r="5" fill="#4a7a3a"/>
+      <rect x="960" y="352" width="28" height="14" rx="7" fill="#1a1810" stroke="#3a3020" stroke-width="1"/>
+      <circle cx="976" cy="359" r="5" fill="#c8a96e" opacity="0.6"/>
+      <text x="920" y="380" font-family="sans-serif" font-size="6" fill="#2a2018" letter-spacing="1">ON</text>
+      <text x="963" y="380" font-family="sans-serif" font-size="6" fill="#2a2018" letter-spacing="1">STANDBY</text>
+
+      <!-- vent slots -->
+      <rect x="900" y="400" width="230" height="60" rx="1" fill="#0e0c08" stroke="#1e1c14" stroke-width="0.5"/>
+      <line x1="908" y1="412" x2="1122" y2="412" stroke="#1e1c14" stroke-width="1"/>
+      <line x1="908" y1="422" x2="1122" y2="422" stroke="#1e1c14" stroke-width="1"/>
+      <line x1="908" y1="432" x2="1122" y2="432" stroke="#1e1c14" stroke-width="1"/>
+      <line x1="908" y1="442" x2="1122" y2="442" stroke="#1e1c14" stroke-width="1"/>
+      <line x1="908" y1="452" x2="1122" y2="452" stroke="#1e1c14" stroke-width="1"/>
+
+      <!-- cabinet feet -->
+      <rect x="100"  y="475" width="40" height="12" rx="3" fill="#0e0c08" stroke="#1e1c14" stroke-width="1"/>
+      <rect x="820"  y="475" width="40" height="12" rx="3" fill="#0e0c08" stroke="#1e1c14" stroke-width="1"/>
+      <rect x="900"  y="475" width="40" height="12" rx="3" fill="#0e0c08" stroke="#1e1c14" stroke-width="1"/>
+      <rect x="1060" y="475" width="40" height="12" rx="3" fill="#0e0c08" stroke="#1e1c14" stroke-width="1"/>
+
+    </svg>
+    <!-- END AMP SVG -->
+
+
+    <!-- TEXT PANEL — left side -->
+    <div class="hs-text-panel">
+      <p class="hs-eyebrow">British Rock &bull; Independent</p>
+      <h1 class="hs-headline">Raw.<br><em>Honest.</em><br>Loud.</h1>
+      <div class="hs-rule"></div>
+      <p class="hs-bio">
+        Written, performed, and produced by Hazy Summerz —
+        loud guitars, rhythmic bass lines, thumping drums,
+        and a commanding baritone. Music built on honesty and impact.
+      </p>
+    </div>
+
+
+    <!--
+      ═══════════════════════════════════════
+      PHOTO FRAME
+      ───────────────────────────────────────
+      TO ADD YOUR PHOTO:
+      Replace the placeholder div below with:
+
+        <img src="your-photo-filename.jpg" alt="Hazy Summerz">
+
+      Make sure your photo file is in the same
+      folder as this index.html file.
+      ═══════════════════════════════════════
+    -->
+    <div class="hs-photo-float">
+      <!-- REPLACE THIS COMMENT WITH YOUR IMG TAG:
+           <img src="photo.jpg" alt="Hazy Summerz">
+      -->
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3a2e1e" stroke-width="1.2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span class="hs-photo-label">Your photo here</span>
+    </div>
+
+  </section>
+  <!-- END HERO -->
+
+
+  <!-- ═══════════════════════════════════════
+       MUSIC SECTION
+  ═══════════════════════════════════════ -->
+  <section class="hs-music" id="music">
+    <p class="hs-section-label">Discography</p>
+    <h2 class="hs-section-title">The Music</h2>
+
+    <div class="hs-player-shell">
+
+      <div class="hs-player-top">
+        <span class="hs-player-top-label">Stream &bull; Download &bull; Support direct</span>
+        <span class="hs-rec">
+          <span class="hs-rec-dot"></span>
+          Live on Bandcamp
+        </span>
+      </div>
+
+      <div class="hs-bandcamp-wrap">
+
+        <!--
+          ═══════════════════════════════════════════════
+          BANDCAMP PLAYER — PASTE YOUR EMBED CODE HERE
+          ───────────────────────────────────────────────
+          1. Go to your Bandcamp page: hazysummerz.bandcamp.com
+          2. Click any album or track
+          3. Click the Share / Embed button
+          4. Click "Embed this album" or "Embed this track"
+          5. Copy the iframe code Bandcamp gives you
+          6. Paste it here, replacing this comment block
+
+          The iframe should look something like:
+          <iframe style="border: 0; width: 100%; height: 400px;"
+            src="https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXXX/..."
+            seamless>
+            <a href="https://hazysummerz.bandcamp.com/album/...">...</a>
+          </iframe>
+
+          TIP: In the Bandcamp embed options, choose:
+          - Background colour: #0f0c08
+          - Link colour:       #c8a96e
+          - Size: Large
+          ═══════════════════════════════════════════════
+        -->
+
+      </div>
+
+      <div class="hs-player-footer">
+        <a class="hs-btn" href="https://hazysummerz.bandcamp.com" target="_blank" rel="noopener">
+          Open on Bandcamp
+        </a>
+        <span class="hs-support-note">
+          All music written, performed &amp; produced by Hazy Summerz
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT ANCHOR (add content if needed)
+  ═══════════════════════════════════════ -->
+  <div id="contact"></div>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="hs-footer">
+
+    <div class="hs-footer-left">
+
+      <!-- RAF Roundel — drawn in SVG, gold outer ring separates it from dark background -->
+      <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-label="British roundel">
+        <circle cx="26" cy="26" r="25" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+        <circle cx="26" cy="26" r="23" fill="#003087"/>
+        <circle cx="26" cy="26" r="16" fill="#ffffff"/>
+        <circle cx="26" cy="26" r="9"  fill="#cf101a"/>
+      </svg>
+
+      <div class="hs-footer-brand">
+        <div class="hs-footer-rule"></div>
+        <div class="hs-footer-logo">Hazy Summerz</div>
+        <div class="hs-footer-location">Portsmouth, England</div>
+      </div>
+
+    </div>
+
+    <div class="hs-footer-copy">
+      &copy; 2025 Hazy Summerz. All rights reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>
